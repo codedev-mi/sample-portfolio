@@ -215,10 +215,22 @@ const App = () => {
                         {projects.map((project) => (
                             <div key={project.id} className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-indigo-600/10 hover:-translate-y-2 transition-all duration-300 flex flex-col">
                                 <div
-                                    className="h-56 bg-slate-100 flex items-center justify-center text-slate-300 group-hover:bg-gradient-to-br from-indigo-500 to-indigo-600 group-hover:text-white transition-colors duration-300 cursor-pointer"
+                                    className="h-56 relative overflow-hidden bg-slate-100 flex items-center justify-center cursor-pointer group/image"
                                     onClick={() => openModal(project)}
                                 >
-                                    {project.icon}
+                                    {/* Cover/Poster Image */}
+                                    <img
+                                        src={project.images[0]}
+                                        alt={project.title}
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/image:scale-110"
+                                    />
+                                    {/* Dark Overlay for contrast */}
+                                    <div className="absolute inset-0 bg-slate-900/40 group-hover/image:bg-slate-900/60 transition-colors duration-300"></div>
+
+                                    {/* Icon centered over the image */}
+                                    <div className="relative z-10 text-white/90 group-hover/image:text-white transition-all transform group-hover/image:scale-110 duration-300 drop-shadow-lg">
+                                        {project.icon}
+                                    </div>
                                 </div>
                                 <div className="p-8 flex flex-col flex-grow">
                                     <div className="flex gap-2 mb-4 flex-wrap">
